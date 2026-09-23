@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BOND — Find your people in Gurgaon</title>
+<meta name="description" content="BOND finds the people near you already doing the thing you want to do. Book a badminton court, a trek or a coffee walk in three taps. Launching in Gurgaon.">
+<meta property="og:title" content="BOND — Find your people">
+<meta property="og:description" content="Same city, same vibe. Real plans with people who live minutes away. Launching in Gurgaon.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000000;
+    --raise:#0C0D11;
+    --line:#1B1D25;
+    --blue:#1F5FFF;
+    --blue-dim:#0E2A6B;
+    --coral:#F0473E;
+    --gold:#F5C518;
+    --green:#3FD07A;
+    --fg:#FFFFFF;
+    --mut:#878B96;
+    --mut2:#5C606B;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--ink);color:var(--fg);
+    font-family:'Big Caslon','Libre Caslon Text','Libre Caslon Display',Georgia,'Times New Roman',serif;
+    font-size:17.5px;line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  h1,h2,h3,.disp{
+    font-family:'Big Caslon','Libre Caslon Display',Georgia,'Times New Roman',serif;
+    font-weight:400;line-height:1.02;letter-spacing:-.012em;margin:0;
+  }
+  h1{font-size:clamp(50px,8.8vw,102px);line-height:.98;letter-spacing:-.02em}
+  h2{font-size:clamp(34px,5vw,60px)}
+  h3{font-size:clamp(21px,2.2vw,26px);line-height:1.18}
+  p{margin:0}
+  a{color:inherit}
+
+  /* nav */
+  nav{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+    background:rgba(0,0,0,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .navin{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .mark i{
+    width:28px;height:28px;border-radius:7px;background:var(--blue);
+    display:grid;place-items:center;font-style:normal;font-size:16px;
+    font-weight:900;
+  }
+  .mark b{font-family:'Big Caslon','Libre Caslon Display',Georgia,serif;font-weight:400;font-size:22px;letter-spacing:.04em}
+  .mark b::after{content:'.';color:var(--blue)}
+  .ghost{
+    font-size:13px;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;
+    padding:9px 16px;border:1px solid var(--line);border-radius:999px;color:var(--mut);
+    font-weight:600;transition:color .18s,border-color .18s;
+  }
+  .ghost:hover{color:#fff;border-color:#34384400}
+  .ghost:hover{border-color:#3a3f4d}
+
+  /* hero */
+  header{padding:84px 0 92px;position:relative;overflow:hidden}
+  header::before{
+    content:'';position:absolute;inset:-30% 0 auto 50%;translate:-50% 0;
+    width:min(1000px,130%);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(31,95,255,.22),transparent 62%);
+    pointer-events:none;
+  }
+  .hero{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:62px;align-items:center}
+  .kick{
+    font-size:12px;letter-spacing:.28em;color:var(--blue);
+    font-weight:700;margin-bottom:22px;
+  }
+  .lede{color:var(--mut);font-size:clamp(17px,1.65vw,19px);max-width:46ch;margin-top:24px}
+
+  form{display:flex;gap:9px;margin-top:34px;max-width:470px;flex-wrap:wrap}
+  input[type=email]{
+    flex:1 1 230px;min-width:0;background:var(--raise);color:#fff;
+    border:1px solid var(--line);border-radius:12px;padding:15px 17px;
+    font:inherit;font-size:16px;
+  }
+  input::placeholder{color:var(--mut2)}
+  input:focus-visible,button:focus-visible,a:focus-visible{
+    outline:2px solid var(--blue);outline-offset:3px;
+  }
+  button{
+    background:#fff;color:#000;border:0;border-radius:12px;padding:15px 26px;
+    font:inherit;font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:800;cursor:pointer;
+  }
+  button:hover{background:var(--blue);color:#fff}
+  .fine{font-size:13.5px;color:var(--mut2);margin-top:14px}
+  .ok{color:var(--green);font-size:15px;margin-top:20px;display:none}
+
+  /* the pass object */
+  .card{
+    background:var(--raise);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 34px 80px -40px rgba(31,95,255,.55);
+  }
+  .shot{
+    height:172px;position:relative;
+    background:
+      radial-gradient(120% 90% at 20% 0%,rgba(31,95,255,.5),transparent 60%),
+      linear-gradient(160deg,#10224e,#070810 72%);
+  }
+  .shot svg{position:absolute;inset:0;width:100%;height:100%}
+  .chip{
+    position:absolute;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:700;padding:6px 11px;border-radius:7px;
+  }
+  .chip.cat{top:13px;left:13px;background:var(--blue);color:#fff}
+  .chip.ver{top:13px;left:88px;background:var(--gold);color:#1a1300}
+  .chip.km{bottom:13px;right:13px;background:rgba(0,0,0,.74);color:#fff;letter-spacing:.05em}
+  .cbody{padding:18px 20px 20px}
+  .cbody h3{margin-bottom:7px}
+  .meta{color:var(--mut);font-size:14.5px}
+  .split{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:15px;padding-top:15px;border-top:1px solid var(--line);
+  }
+  .price{font-family:'Big Caslon','Libre Caslon Display',Georgia,serif;font-weight:400;font-size:26px}
+  .price span{font-size:13px;color:var(--mut);font-weight:400;font-family:'Big Caslon','Libre Caslon Text',Georgia,serif}
+  .spots{font-size:13.5px;color:var(--green)}
+  .fake{
+    background:#fff;color:#000;border-radius:9px;padding:9px 17px;font-size:12.5px;
+    letter-spacing:.09em;text-transform:uppercase;font-weight:800;
+  }
+
+  /* sections */
+  section{padding:92px 0;border-top:1px solid var(--line)}
+  .stateline{
+    font-family:'Big Caslon','Libre Caslon Display',Georgia,serif;font-weight:400;
+    font-size:clamp(30px,4.3vw,52px);line-height:1.1;max-width:20ch;letter-spacing:-.015em;
+  }
+  .stateline em{font-style:italic;color:var(--mut2)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .two p{color:var(--mut);max-width:48ch}
+  .two p + p{margin-top:17px}
+
+  ol{list-style:none;counter-reset:s;padding:0;margin:48px 0 0;display:grid;gap:30px;grid-template-columns:repeat(3,1fr)}
+  ol li{counter-increment:s;border-top:2px solid var(--blue);padding-top:20px}
+  ol li::before{
+    content:counter(s,decimal-leading-zero);display:block;
+    font-family:'Big Caslon','Libre Caslon Display',Georgia,serif;font-weight:400;
+    font-size:19px;color:var(--blue);letter-spacing:.06em;margin-bottom:12px;
+  }
+  ol li p{color:var(--mut);font-size:15.5px;margin-top:9px}
+
+  .panels{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+  .panel{border:1px solid var(--line);border-radius:18px;padding:30px}
+  .panel.lit{border-color:var(--blue-dim);background:linear-gradient(175deg,rgba(31,95,255,.09),transparent 70%)}
+  .panel p{color:var(--mut);font-size:15.5px;margin-top:12px}
+  .tag{
+    display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:var(--blue);margin-bottom:14px;
+  }
+  .panel.lit .tag{color:var(--gold)}
+
+  table{width:100%;border-collapse:collapse;margin-top:44px;font-size:16px}
+  th,td{text-align:left;padding:17px 0;border-bottom:1px solid var(--line)}
+  th{font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--mut2)}
+  td:last-child,th:last-child{text-align:right}
+  td em{font-style:normal;color:var(--mut);font-size:14.5px;display:block;margin-top:3px}
+
+  .close{text-align:center;padding:104px 0}
+  .close form{margin:34px auto 0;justify-content:center}
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--mut2);font-size:14px}
+  .fin{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--mut);text-decoration:none}
+  footer a:hover{color:#fff}
+
+  @media (max-width:880px){
+    .hero,.two,.panels{grid-template-columns:1fr;gap:44px}
+    ol{grid-template-columns:1fr;gap:26px}
+    header{padding:58px 0 68px}
+    section{padding:70px 0}
+    .close{padding:78px 0}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap navin">
+  <a class="mark" href="#top"><i>B</i><b>BOND</b></a>
+  <a class="ghost" href="https://bond-968340508411.asia-southeast1.run.app">Open the app</a>
+</div></nav>
+
+<header id="top"><div class="wrap hero">
+  <div>
+    <p class="kick">GURGAON · FIRST CIRCLES LIVE SOON</p>
+    <h1>Find your people. Same city, same vibe.</h1>
+    <p class="lede">You moved here for the job. The job did not come with friends. BOND shows you what people minutes away are already doing this weekend, and gets you a spot in it.</p>
+
+    <form id="wl" novalidate>
+      <input type="email" id="em" placeholder="you@email.com" aria-label="Email address" required>
+      <button type="submit">Join the waitlist</button>
+    </form>
+    <p class="fine">Free to join. You only pay when you book a plan.</p>
+    <p class="ok" id="ok">You're on the list. We'll write when Gurgaon circles open.</p>
+  </div>
+
+  <div class="card" aria-label="Example plan on BOND">
+    <div class="shot">
+      <svg viewBox="0 0 400 172" preserveAspectRatio="none" aria-hidden="true">
+        <g stroke="#5E8CFF" stroke-opacity=".5" fill="none" stroke-width="1.2">
+          <path d="M60 150 L340 150 M92 112 L308 112 M116 84 L284 84"/>
+          <path d="M60 150 L116 84 M340 150 L284 84"/>
+          <path d="M200 66 L200 150" stroke-opacity=".28"/>
+        </g>
+        <rect x="150" y="60" width="100" height="26" fill="none" stroke="#5E8CFF" stroke-opacity=".45"/>
+        <circle cx="200" cy="44" r="5" fill="#F5C518" fill-opacity=".9"/>
+      </svg>
+      <span class="chip cat">Sports</span>
+      <span class="chip ver">Verified</span>
+      <span class="chip km">0.8 km away</span>
+    </div>
+    <div class="cbody">
+      <h3>Sunday doubles at Tau Devi Lal</h3>
+      <p class="meta">Sun, 10:00 AM · Sector 38 · 4 going</p>
+      <div class="split">
+        <span class="price">₹199 <span>per pass</span></span>
+        <span class="spots">2 spots left</span>
+      </div>
+      <div class="split" style="border:0;padding-top:13px;margin-top:2px">
+        <span class="meta">Rackets provided</span>
+        <span class="fake">Book pass</span>
+      </div>
+    </div>
+  </div>
+</div></header>
+
+<section><div class="wrap two">
+  <p class="stateline">Nobody is short of people. <em>They're short of a reason to show up.</em></p>
+  <div>
+    <p>A twenty-seven year old in Sector 56 lives within three kilometres of dozens of people who play badminton on Sunday morning. He will never meet one of them. There is no list, no invitation, and no acceptable way to knock.</p>
+    <p>Dating apps solve a different problem and carry the wrong intent. Group chats fill up with plans nobody schedules. What is missing is not connection. It is a specific court, at a specific hour, with two spots open.</p>
+    <p>BOND only does that last part. Every plan on it has a place, a time, a price and a number of seats.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How it works</h2>
+  <ol>
+    <li><h3>Tell it what you're into</h3><p>Pick three or more from badminton, gym, trekking, café hopping, live music, gaming. That calibrates what you get shown.</p></li>
+    <li><h3>See what's on near you</h3><p>Your feed fills with plans sorted by distance and overlap. Every card shows how far, how much, and how many seats are left.</p></li>
+    <li><h3>Book and turn up</h3><p>Pay in the app, get a QR pass, scan it at the venue. No group chat, no coordination, no one flaking in the thread.</p></li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Two kinds of plans</h2>
+  <div class="panels">
+    <div class="panel lit">
+      <span class="tag">Verified host</span>
+      <h3>Curated circles</h3>
+      <p>Run by venues and hosts we've checked. Fixed price, fixed capacity, instant pass. A district badminton tournament, a sunrise yoga session, a rooftop table on Friday.</p>
+    </div>
+    <div class="panel">
+      <span class="tag">Community run</span>
+      <h3>Peer initiatives</h3>
+      <p>Anything a member wants to organise. Court fees split four ways, a coffee and sketch walk, a Sunday trek. Host it free, set a price or split the cost.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>What it costs</h2>
+  <table>
+    <tr><th>Item</th><th>Price</th></tr>
+    <tr><td>Joining BOND<em>Profile, interests, full feed</em></td><td>Free</td></tr>
+    <tr><td>Hosting a plan<em>Peer initiatives, any member</em></td><td>Free</td></tr>
+    <tr><td>Booking a pass<em>Set by the host</em></td><td>₹199 – ₹1,499</td></tr>
+    <tr><td>Reservation fee<em>Charged by BOND per pass</em></td><td>₹50</td></tr>
+    <tr><td>Add-ons<em>Gear rental, lounge access, optional</em></td><td>from ₹49</td></tr>
+  </table>
+  <p class="fine" style="margin-top:20px">Free cancellation up to four hours before a plan starts.</p>
+</div></section>
+
+<section class="close"><div class="wrap">
+  <h2>Your weekend is on Thursday's list.</h2>
+  <p class="lede" style="margin:22px auto 0">We're opening Gurgaon first, one sector cluster at a time. Leave an email and we'll tell you when yours is live.</p>
+  <form id="wl2" novalidate>
+    <input type="email" id="em2" placeholder="you@email.com" aria-label="Email address" required>
+    <button type="submit">Join the waitlist</button>
+  </form>
+  <p class="ok" id="ok2" style="margin-left:auto;margin-right:auto">You're on the list. We'll write when Gurgaon circles open.</p>
+</div></section>
+
+<footer><div class="wrap fin">
+  <span>BOND · Gurgaon, India</span>
+  <span><a href="https://bond-968340508411.asia-southeast1.run.app">Open the app</a></span>
+</div></footer>
+
+<script>
+(function(){
+  function wire(formId, inputId, okId){
+    var f=document.getElementById(formId), i=document.getElementById(inputId), o=document.getElementById(okId);
+    if(!f) return;
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(i.value||'').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ i.focus(); i.style.borderColor='#F0473E'; return; }
+      i.style.borderColor='';
+      try{
+        var k='bond:waitlist', cur=JSON.parse(localStorage.getItem(k)||'[]');
+        if(cur.indexOf(v)===-1){ cur.push(v); localStorage.setItem(k,JSON.stringify(cur)); }
+      }catch(err){}
+      f.style.display='none';
+      o.style.display='block';
+    });
+  }
+  wire('wl','em','ok');
+  wire('wl2','em2','ok2');
+})();
+</script>
+</body>
+</html>
